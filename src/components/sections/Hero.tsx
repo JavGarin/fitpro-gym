@@ -57,7 +57,7 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="relative hidden md:block group">
+          <div className="relative block group">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-3xl blur-lg opacity-25 group-hover:opacity-50 transition duration-1000 animate-tilt"></div>
             <div className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <video
