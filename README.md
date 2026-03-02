@@ -6,7 +6,7 @@ A modern, responsive, and attractive landing page for a fictional gym named **Fi
 
 ### Preview
 
-![FitPro Gym Website Preview](./assets/images/screenshot.avif)
+![FitPro Gym Website Preview](./public/screenshot.avif)
 
 ---
 
