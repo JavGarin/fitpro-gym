@@ -18,7 +18,7 @@ const Header = styled.header<{ $scrolled: boolean }>`
   right: 0;
   z-index: 50;
   transition: all ${({ theme }) => theme.transitions.normal};
-  padding: ${({ $scrolled }) => ($scrolled ? '0.75rem 0' : '1.15rem 0')};
+  padding: ${({ $scrolled }) => ($scrolled ? '0.5rem 0' : '0.85rem 0')};
   background-color: ${({ $scrolled }) =>
     $scrolled ? 'rgba(9, 11, 14, 0.95)' : 'rgba(9, 11, 14, 0.65)'};
   backdrop-filter: blur(12px);
@@ -28,6 +28,10 @@ const Header = styled.header<{ $scrolled: boolean }>`
       : '1px solid rgba(255, 255, 255, 0.1)'};
   box-shadow: ${({ $scrolled, theme }) =>
     $scrolled ? theme.shadows.brutalDark : 'none'};
+
+  ${({ theme }) => theme.media.sm} {
+    padding: ${({ $scrolled }) => ($scrolled ? '0.75rem 0' : '1.15rem 0')};
+  }
 `;
 
 const NavContainer = styled.div`

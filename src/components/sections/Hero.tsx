@@ -11,11 +11,21 @@ const Section = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 6rem;
-  padding-bottom: 4rem;
+  padding-top: 4.75rem;
+  padding-bottom: 2rem;
   overflow: hidden;
   overflow-x: hidden;
   background-color: ${({ theme }) => theme.colors.bg};
+
+  ${({ theme }) => theme.media.sm} {
+    padding-top: 5.5rem;
+    padding-bottom: 3rem;
+  }
+
+  ${({ theme }) => theme.media.lg} {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -40,7 +50,7 @@ const ContentContainer = styled.div`
 const HeroGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
 
   ${({ theme }) => theme.media.sm} {
@@ -56,7 +66,7 @@ const HeroGrid = styled.div`
 const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 
   ${({ theme }) => theme.media.sm} {
     gap: 1.75rem;
@@ -70,19 +80,24 @@ const SeasonBadge = styled.div`
   width: fit-content;
   border: 2px solid ${({ theme }) => theme.colors.primary.main};
   background-color: ${({ theme }) => theme.colors.primary.subtle};
-  padding: 0.35rem 0.875rem;
+  padding: 0.25rem 0.65rem;
   box-shadow: ${({ theme }) => theme.shadows.brutalDark};
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: ${({ theme }) => theme.colors.primary.main};
+
+  ${({ theme }) => theme.media.sm} {
+    padding: 0.35rem 0.875rem;
+    font-size: 0.75rem;
+  }
 `;
 
 const HeroHeading = styled.h1`
   font-family: ${({ theme }) => theme.fonts.display};
-  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -105,40 +120,58 @@ const HeroHeading = styled.h1`
     color: ${({ theme }) => theme.colors.primary.main};
     font-family: ${({ theme }) => theme.fonts.mono};
   }
+
+  ${({ theme }) => theme.media.sm} {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+  }
 `;
 
 const HeroParagraph = styled.p`
   font-family: ${({ theme }) => theme.fonts.body};
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.875rem, 2.5vw, 1.25rem);
   color: ${({ theme }) => theme.colors.text.secondary};
-  line-height: 1.6;
+  line-height: 1.5;
   max-width: 42rem;
 
   strong {
     color: #FFFFFF;
     font-weight: 700;
   }
+
+  ${({ theme }) => theme.media.sm} {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+  }
 `;
 
 const ActionButtons = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding-top: 0.5rem;
+  gap: 0.625rem;
+  padding-top: 0.25rem;
   width: 100%;
 
-  /* Full-width buttons on mobile only */
+  /* Full-width buttons on mobile with touch-friendly responsive sizing */
   a, button {
     width: 100%;
     justify-content: center;
+    box-sizing: border-box;
+    height: 2.875rem;
+    font-size: 0.8125rem;
+    padding: 0 1.25rem;
   }
 
   ${({ theme }) => theme.media.sm} {
     flex-direction: row;
     width: auto;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
 
     a, button {
       width: auto;
+      height: 3.25rem;
+      font-size: 0.9375rem;
+      padding: 0 2rem;
     }
   }
 `;
@@ -146,19 +179,20 @@ const ActionButtons = styled.div`
 const StatsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding-top: 1rem;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
   border-top: 2px solid rgba(255, 255, 255, 0.1);
 
   ${({ theme }) => theme.media.sm} {
     gap: 1rem;
+    padding-top: 1rem;
   }
 `;
 
 const StatCard = styled.div`
   background-color: rgba(16, 20, 29, 0.9);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  padding: 0.75rem;
+  padding: 0.5rem;
   box-shadow: ${({ theme }) => theme.shadows.brutalDark};
 
   ${({ theme }) => theme.media.sm} {
@@ -170,12 +204,12 @@ const StatHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 
   svg {
     color: ${({ theme }) => theme.colors.primary.main};
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 1rem;
+    height: 1rem;
   }
 
   .code {
@@ -188,11 +222,19 @@ const StatHeader = styled.div`
       display: inline;
     }
   }
+
+  ${({ theme }) => theme.media.sm} {
+    margin-bottom: 0.25rem;
+    svg {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+  }
 `;
 
 const StatValue = styled.div`
   font-family: ${({ theme }) => theme.fonts.display};
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 3.2vw, 1.5rem);
   font-weight: 900;
   color: #FFFFFF;
   letter-spacing: -0.02em;
@@ -200,10 +242,10 @@ const StatValue = styled.div`
 
 const StatLabel = styled.div`
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+  font-size: clamp(0.5625rem, 1.8vw, 0.75rem);
   color: ${({ theme }) => theme.colors.text.muted};
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -212,16 +254,18 @@ const StatLabel = styled.div`
 const MediaContainer = styled.div`
   position: relative;
   width: 100%;
-  /* Clip the brutalist offset shadow so it doesn't overflow the viewport */
   overflow: hidden;
-  padding-bottom: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0;
+
+  ${({ theme }) => theme.media.sm} {
+    padding-bottom: 0.75rem;
+    padding-right: 0.75rem;
+  }
 `;
 
 const MediaOffsetShadow = styled.div`
   display: none;
   position: absolute;
-  /* Match the container's padding offsets */
   top: 0;
   left: 0;
   right: -0.75rem;
@@ -239,14 +283,14 @@ const MediaCard = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.2);
   background-color: ${({ theme }) => theme.colors.dark.card};
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 `;
 
 const MediaTopBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.875rem;
+  padding: 0.4rem 0.75rem;
   background-color: ${({ theme }) => theme.colors.dark.surface};
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -254,29 +298,41 @@ const MediaTopBar = styled.div`
     display: flex;
     gap: 0.35rem;
     span {
-      height: 0.625rem;
-      width: 0.625rem;
+      height: 0.55rem;
+      width: 0.55rem;
     }
   }
 
   .statusText {
     font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: 0.625rem;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: ${({ theme }) => theme.colors.text.muted};
+  }
+
+  ${({ theme }) => theme.media.sm} {
+    padding: 0.5rem 0.875rem;
+
+    .dots span {
+      height: 0.625rem;
+      width: 0.625rem;
+    }
+
+    .statusText {
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+    }
   }
 `;
 
 const VideoWrapper = styled.div`
   position: relative;
-  /* Mobile: use a fixed moderate height so it never fills the whole screen */
   width: 100%;
-  height: 280px;
+  aspect-ratio: 16 / 9;
   background-color: #000000;
 
   ${({ theme }) => theme.media.sm} {
-    height: auto;
     aspect-ratio: 3 / 4;
     max-height: 480px;
   }
@@ -290,6 +346,7 @@ const VideoWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
   }
 `;
 
@@ -302,9 +359,9 @@ const VideoGradientOverlay = styled.div`
 
 const VideoStatusFooter = styled.div`
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -314,11 +371,11 @@ const VideoStatusFooter = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(16, 20, 29, 0.9);
     backdrop-filter: blur(8px);
-    padding: 0.35rem 0.75rem;
+    padding: 0.25rem 0.5rem;
 
     .title {
       font-family: ${({ theme }) => theme.fonts.mono};
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 700;
       text-transform: uppercase;
       color: #FFFFFF;
@@ -326,7 +383,7 @@ const VideoStatusFooter = styled.div`
     }
     .sub {
       font-family: ${({ theme }) => theme.fonts.mono};
-      font-size: 0.625rem;
+      font-size: 0.55rem;
       color: ${({ theme }) => theme.colors.cyan.main};
       display: block;
     }
@@ -335,43 +392,68 @@ const VideoStatusFooter = styled.div`
   .liveTag {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
     background-color: ${({ theme }) => theme.colors.primary.main};
     color: #000000;
-    padding: 0.25rem 0.625rem;
+    padding: 0.2rem 0.5rem;
     font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: 0.6875rem;
+    font-size: 0.625rem;
     font-weight: 900;
     text-transform: uppercase;
+  }
+
+  ${({ theme }) => theme.media.sm} {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+
+    .infoBadge {
+      padding: 0.35rem 0.75rem;
+      .title {
+        font-size: 0.75rem;
+      }
+      .sub {
+        font-size: 0.625rem;
+      }
+    }
+
+    .liveTag {
+      padding: 0.25rem 0.625rem;
+      font-size: 0.6875rem;
+    }
   }
 `;
 
 const ScrollLink = styled.a`
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  color: ${({ theme }) => theme.colors.text.muted};
-  transition: color ${({ theme }) => theme.transitions.fast};
+  display: none;
 
-  span {
-    font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: 0.625rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
+  ${({ theme }) => theme.media.lg} {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    color: ${({ theme }) => theme.colors.text.muted};
+    transition: color ${({ theme }) => theme.transitions.fast};
 
-  svg {
-    color: ${({ theme }) => theme.colors.primary.main};
-    animation: bounce 1.5s infinite;
-  }
+    span {
+      font-family: ${({ theme }) => theme.fonts.mono};
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.primary.main};
+    svg {
+      color: ${({ theme }) => theme.colors.primary.main};
+      animation: bounce 1.5s infinite;
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary.main};
+    }
   }
 
   @keyframes bounce {
@@ -432,7 +514,7 @@ export const Hero = () => {
               </Button>
               <Button asChild variant="outline" size="lg">
                 <a href="#servicios">
-                  <span>CONOCER ÁREAS</span>
+                  <span>CONOCER MÁS</span>
                 </a>
               </Button>
             </ActionButtons>
