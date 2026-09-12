@@ -1,4 +1,4 @@
-import { Zap, Users, Clock, Flame, ShieldCheck, Trophy, Sparkles } from 'lucide-react';
+import { Zap, Users, Clock, Trophy } from 'lucide-react';
 import gym1 from '../../assets/images/zonadepesas.avif';
 import gym2 from '../../assets/images/cardiopremiun.avif';
 import gym3 from '../../assets/images/clasesgrupales.avif';
