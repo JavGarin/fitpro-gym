@@ -14,6 +14,7 @@ const Section = styled.section`
   padding-top: 6rem;
   padding-bottom: 4rem;
   overflow: hidden;
+  overflow-x: hidden;
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 
@@ -24,6 +25,9 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
   width: 100%;
+  /* Prevent any child from breaking out horizontally */
+  overflow-x: hidden;
+  box-sizing: border-box;
 
   ${({ theme }) => theme.media.sm} {
     padding: 0 1.5rem;
@@ -36,8 +40,12 @@ const ContentContainer = styled.div`
 const HeroGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
+
+  ${({ theme }) => theme.media.sm} {
+    gap: 2.5rem;
+  }
 
   ${({ theme }) => theme.media.lg} {
     grid-template-columns: 1.15fr 0.85fr;
@@ -117,10 +125,21 @@ const ActionButtons = styled.div`
   flex-direction: column;
   gap: 0.75rem;
   padding-top: 0.5rem;
+  width: 100%;
+
+  /* Full-width buttons on mobile only */
+  a, button {
+    width: 100%;
+    justify-content: center;
+  }
 
   ${({ theme }) => theme.media.sm} {
     flex-direction: row;
-    gap: 1rem;
+    width: auto;
+
+    a, button {
+      width: auto;
+    }
   }
 `;
 
@@ -193,12 +212,20 @@ const StatLabel = styled.div`
 const MediaContainer = styled.div`
   position: relative;
   width: 100%;
+  /* Clip the brutalist offset shadow so it doesn't overflow the viewport */
+  overflow: hidden;
+  padding-bottom: 0.75rem;
+  padding-right: 0.75rem;
 `;
 
 const MediaOffsetShadow = styled.div`
   display: none;
   position: absolute;
-  inset: 0;
+  /* Match the container's padding offsets */
+  top: 0;
+  left: 0;
+  right: -0.75rem;
+  bottom: -0.75rem;
   background-color: ${({ theme }) => theme.colors.primary.main};
   transform: translate(0.75rem, 0.75rem);
 
@@ -243,13 +270,20 @@ const MediaTopBar = styled.div`
 
 const VideoWrapper = styled.div`
   position: relative;
-  aspect-ratio: 4 / 5;
+  /* Mobile: use a fixed moderate height so it never fills the whole screen */
   width: 100%;
-  max-height: 520px;
+  height: 280px;
   background-color: #000000;
 
   ${({ theme }) => theme.media.sm} {
+    height: auto;
     aspect-ratio: 3 / 4;
+    max-height: 480px;
+  }
+
+  ${({ theme }) => theme.media.lg} {
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
   }
 
   video {
