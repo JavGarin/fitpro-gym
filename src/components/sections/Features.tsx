@@ -1,40 +1,229 @@
-import { features } from "../../constants";
-import { SectionTitle } from "../ui";
+import styled from 'styled-components';
+import { features } from '../../constants';
+import { SectionTitle } from '../ui';
+import { ArrowUpRight } from 'lucide-react';
+
+const Section = styled.section`
+  position: relative;
+  padding: 5rem 0;
+  background-color: ${({ theme }) => theme.colors.bg};
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+
+  ${({ theme }) => theme.media.sm} {
+    padding: 7rem 0;
+  }
+`;
+
+const Container = styled.div`
+  position: relative;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  ${({ theme }) => theme.media.sm} {
+    padding: 0 1.5rem;
+  }
+  ${({ theme }) => theme.media.lg} {
+    padding: 0 2rem;
+  }
+`;
+
+const HeaderRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  ${({ theme }) => theme.media.md} {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+`;
+
+const HeaderDesc = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme.colors.text.muted};
+  max-width: 28rem;
+  line-height: 1.6;
+
+  ${({ theme }) => theme.media.sm} {
+    font-size: 1rem;
+  }
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  ${({ theme }) => theme.media.sm} {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  ${({ theme }) => theme.media.lg} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+const Card = styled.div`
+  background-color: ${({ theme }) => theme.colors.dark.card};
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.06);
+  transition: all ${({ theme }) => theme.transitions.normal};
+
+  ${({ theme }) => theme.media.sm} {
+    padding: 1.75rem;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: ${({ theme }) => theme.shadows.brutalPrimary};
+  }
+`;
+
+const CardMeta = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .code {
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: ${({ theme }) => theme.colors.text.muted};
+    transition: color ${({ theme }) => theme.transitions.fast};
+  }
+
+  .accentBlock {
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: ${({ theme }) => theme.colors.primary.main};
+    opacity: 0;
+    transition: opacity ${({ theme }) => theme.transitions.fast};
+  }
+
+  ${Card}:hover & {
+    .code {
+      color: ${({ theme }) => theme.colors.primary.main};
+    }
+    .accentBlock {
+      opacity: 1;
+    }
+  }
+`;
+
+const IconBox = styled.div`
+  height: 3.5rem;
+  width: 3.5rem;
+  border: 2px solid #000000;
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: ${({ theme }) => theme.shadows.brutalWhite};
+  transition: all ${({ theme }) => theme.transitions.fast};
+
+  ${Card}:hover & {
+    box-shadow: ${({ theme }) => theme.shadows.brutalCyan};
+  }
+`;
+
+const CardTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.display};
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  transition: color ${({ theme }) => theme.transitions.fast};
+
+  ${Card}:hover & {
+    color: ${({ theme }) => theme.colors.primary.main};
+  }
+`;
+
+const CardDesc = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.text.muted};
+`;
+
+const CardFooter = styled.div`
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.text.subtle};
+  transition: color ${({ theme }) => theme.transitions.fast};
+
+  ${Card}:hover & {
+    color: ${({ theme }) => theme.colors.cyan.main};
+  }
+`;
 
 export const Features = () => {
   return (
-    <section
-      id="servicios"
-      className="py-20 bg-gradient-to-b from-dark to-secondary/10"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <SectionTitle>
-            ¿Por qué elegir
-            <span className="text-primary"> FitPro?</span>
+    <Section id="servicios">
+      <Container>
+        <HeaderRow>
+          <SectionTitle tag="02 // PILARES DE ÉLITE">
+            ¿POR QUÉ ELEGIR <span className="highlight">FITPRO?</span>
           </SectionTitle>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Ofrecemos todo lo que necesitas para alcanzar tus objetivos fitness
-          </p>
-        </div>
+          <HeaderDesc>
+            Fusionamos ciencia aplicada al entrenamiento con equipamiento de nivel olímpico
+            para maximizar cada hora de tu tiempo.
+          </HeaderDesc>
+        </HeaderRow>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid>
           {features.map((feature, idx) => (
-            <div
-              key={idx}
-              className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20 group"
-            >
-              <div
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-              >
-                <feature.icon className="w-8 h-8 text-white" />
+            <Card key={idx}>
+              <div>
+                <CardMeta>
+                  <span className="code">
+                    {feature.code} // {feature.tag}
+                  </span>
+                  <span className="accentBlock" />
+                </CardMeta>
+
+                <IconBox>
+                  <feature.icon size={26} strokeWidth={2.5} />
+                </IconBox>
+
+                <CardTitle>{feature.title}</CardTitle>
+                <CardDesc>{feature.desc}</CardDesc>
               </div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-gray-400">{feature.desc}</p>
-            </div>
+
+              <CardFooter>
+                <span>ESTÁNDAR CERTIFICADO</span>
+                <ArrowUpRight size={16} />
+              </CardFooter>
+            </Card>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Container>
+    </Section>
   );
 };

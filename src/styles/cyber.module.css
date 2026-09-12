@@ -1,0 +1,56 @@
+/* Cyber background patterns and GPU-accelerated effects */
+.cyberGrid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.ambientGlowTop {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 650px);
+  height: min(90vw, 650px);
+  background: radial-gradient(circle, rgba(255, 94, 0, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambientGlowBottom {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: min(80vw, 450px);
+  height: min(80vw, 450px);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floatingCard {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .floatingCard:hover {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+
+.pulseSlow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

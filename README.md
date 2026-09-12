@@ -12,38 +12,58 @@ A modern, responsive, and attractive landing page for a fictional gym named **Fi
 
 ## ➤ Tech Stack
 
-This project is built with a modern and efficient stack, focusing on maintainability and developer experience.
+This project is built with a modern and efficient stack, focusing on performance, mobile-first responsiveness, and developer experience.
 
-- **Frontend Framework:** [React](https://react.dev/) (v18.2)
+- **Package Manager:** [pnpm](https://pnpm.io/) (v11.3+)
+- **Frontend Framework:** [React](https://react.dev/) (v18.3)
 - **Development Environment:** [Vite](https://vitejs.dev/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **CSS Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components:** [Radix UI](https://www.radix-ui.com/) (for the modal and other primitives)
+- **CSS Styling & Design System:** [Styled Components](https://styled-components.com/) + CSS Modules (`*.module.css`) + Typed Theme System
+- **Typography:** Syne, Plus Jakarta Sans, Space Grotesk (Google Fonts)
+- **UI Components:** [Radix UI](https://www.radix-ui.com/) (accessible dialog and slot primitives)
 - **Icons:** [Lucide React](https://lucide.dev/)
+
+---
+
+## ⚡ Quick Start (pnpm)
+
+```bash
+# Install dependencies with pnpm
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+```
 
 ---
 
 ## 📂 Project Structure
 
-The project follows a modular and organized structure to facilitate scalability and maintenance.
-
 ```
 /gym-landing
-├── assets/              # Static assets (images, videos).
+├── assets/              # Optimized static assets (images, videos, posters).
 ├── src/
 │   ├── components/      # Reusable React components.
-│   │   ├── sections/    # Main page sections (Hero, Features, etc.).
-│   │   └── ui/          # Generic UI components (Button, Modal).
-│   ├── constants/       # Application constant data (plans, FAQs).
-│   ├── hooks/           # Custom React hooks (useScroll, useMenu).
-│   ├── lib/             # Utility functions (e.g., cn for Tailwind classes).
-│   ├── App.tsx          # Main component that assembles the sections.
-│   ├── main.tsx         # React application entry point.
-│   └── index.css        # Global styles and Tailwind configuration.
-├── .gitignore           # Files and folders ignored by Git.
-├── package.json         # Project dependencies and scripts.
-├── tailwind.config.js   # Tailwind CSS configuration.
-└── vite.config.ts       # Vite configuration.
+│   │   ├── sections/    # Main page sections (Navbar, Hero, Features, Pricing, Gallery, FAQ, Footer).
+│   │   └── ui/          # Accessible UI primitives (Button, Modal, SectionTitle).
+│   ├── constants/       # Typed application constants (plans, FAQs, features, gallery).
+│   ├── hooks/           # Custom React hooks (useScroll, useMenu, useBodyScrollLock).
+│   ├── lib/             # Utility functions (cn classnames).
+│   ├── styles/          # Styled-components theme, global styles and CSS modules:
+│   │   ├── theme.ts         # Strongly typed Neo-Brutalist design tokens.
+│   │   ├── styled.d.ts      # TypeScript declarations for DefaultTheme.
+│   │   ├── GlobalStyles.ts  # Theme-aware resets, scrollbars and selection.
+│   │   └── cyber.module.css # CSS Module for GPU-accelerated background patterns.
+│   ├── App.tsx          # Main semantic layout assembler.
+│   ├── main.tsx         # React application entry point with ThemeProvider.
+│   └── index.css        # Minimal global base styles.
+├── pnpm-lock.yaml       # pnpm dependency lockfile.
+├── pnpm-workspace.yaml  # pnpm workspace configuration.
+├── package.json         # Project metadata and pnpm packageManager field.
+└── vite.config.ts       # Vite bundler configuration.
 ```
 
 ---
