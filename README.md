@@ -8,6 +8,12 @@ A modern, responsive, and attractive landing page for a fictional gym named **Fi
 
 ![FitPro Gym Website Preview](./public/screenshot_opengraph.avif)
 
+<p align="center">
+  <img src="./public/mobile_screenshot.avif" alt="FitPro Gym - Vista Mobile" width="320" />
+</p>
+
+> 📱 **Vista Mobile** — Diseño 100% responsive optimizado para dispositivos móviles.
+
 ---
 
 ## ➤ Tech Stack

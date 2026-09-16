@@ -78,31 +78,50 @@ const SeasonBadge = styled.div`
   align-items: center;
   gap: 0.5rem;
   width: fit-content;
+  max-width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.primary.main};
   background-color: ${({ theme }) => theme.colors.primary.subtle};
   padding: 0.25rem 0.65rem;
   box-shadow: ${({ theme }) => theme.shadows.brutalDark};
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: 0.6875rem;
+  font-size: 0.6rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.primary.main};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  ${({ theme }) => theme.media.xs} {
+    font-size: 0.625rem;
+    letter-spacing: 0.045em;
+  }
 
   ${({ theme }) => theme.media.sm} {
     padding: 0.35rem 0.875rem;
     font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 `;
 
 const HeroHeading = styled.h1`
   font-family: ${({ theme }) => theme.fonts.display};
-  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-size: clamp(1.625rem, 5.5vw, 2.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: #FFFFFF;
+  word-break: break-word;
+  overflow-wrap: break-word;
 
   .gradientText {
     display: block;
@@ -242,13 +261,24 @@ const StatValue = styled.div`
 
 const StatLabel = styled.div`
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: clamp(0.5625rem, 1.8vw, 0.75rem);
+  font-size: clamp(0.5rem, 1.6vw, 0.75rem);
   color: ${({ theme }) => theme.colors.text.muted};
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+  letter-spacing: 0.03em;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  ${({ theme }) => theme.media.sm} {
+    font-size: clamp(0.5625rem, 1.8vw, 0.75rem);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    display: block;
+    -webkit-line-clamp: unset;
+  }
 `;
 
 const MediaContainer = styled.div`

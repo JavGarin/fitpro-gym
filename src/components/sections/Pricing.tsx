@@ -51,13 +51,13 @@ const HeaderBlock = styled.div`
 
 const HeaderParagraph = styled.p`
   font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
   color: ${({ theme }) => theme.colors.text.muted};
   margin-top: 1rem;
   line-height: 1.6;
 
   ${({ theme }) => theme.media.sm} {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 2vw, 1.125rem);
   }
 `;
 
@@ -308,7 +308,7 @@ const FeatureList = styled.div`
 
 const TrustBar = styled.div`
   margin-top: 3rem;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1rem;
   background-color: ${({ theme }) => theme.colors.dark.card};
   border: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
@@ -321,22 +321,38 @@ const TrustBar = styled.div`
   ${({ theme }) => theme.media.sm} {
     flex-direction: row;
     text-align: left;
+    padding: 1.25rem 1.5rem;
   }
 
   .left {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.75rem;
     font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     color: ${({ theme }) => theme.colors.text.secondary};
+    word-break: break-word;
+    overflow-wrap: break-word;
+    text-align: left;
 
     .indicator {
       height: 0.75rem;
       width: 0.75rem;
+      min-width: 0.75rem;
       background-color: ${({ theme }) => theme.colors.cyan.main};
+      margin-top: 0.125rem;
+    }
+
+    ${({ theme }) => theme.media.sm} {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      align-items: center;
+
+      .indicator {
+        margin-top: 0;
+      }
     }
   }
 
@@ -350,6 +366,7 @@ const TrustBar = styled.div`
     display: flex;
     align-items: center;
     gap: 0.35rem;
+    white-space: nowrap;
 
     &:hover {
       color: #FFFFFF;

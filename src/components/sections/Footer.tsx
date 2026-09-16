@@ -41,10 +41,12 @@ const BrandBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
 
   .iconBox {
     height: 2.5rem;
     width: 2.5rem;
+    min-width: 2.5rem;
     background-color: ${({ theme }) => theme.colors.primary.main};
     border: 2px solid #000000;
     display: flex;
@@ -68,10 +70,19 @@ const BrandBlock = styled.div`
 
   .metaSub {
     font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: 0.6875rem;
+    font-size: 0.5625rem;
     color: ${({ theme }) => theme.colors.text.muted};
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    ${({ theme }) => theme.media.sm} {
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      white-space: normal;
+    }
   }
 `;
 
@@ -308,20 +319,38 @@ const BottomBar = styled.div`
   font-family: ${({ theme }) => theme.fonts.mono};
   font-size: 0.6875rem;
   color: ${({ theme }) => theme.colors.text.subtle};
+  text-align: center;
+
+  p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 
   ${({ theme }) => theme.media.sm} {
     flex-direction: row;
+    text-align: left;
+
+    p {
+      word-break: normal;
+      overflow-wrap: normal;
+    }
   }
 
   .socials {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 
     a {
       color: ${({ theme }) => theme.colors.text.muted};
       transition: color ${({ theme }) => theme.transitions.fast};
       &:hover { color: ${({ theme }) => theme.colors.primary.main}; }
+    }
+
+    ${({ theme }) => theme.media.sm} {
+      justify-content: flex-end;
     }
   }
 `;
